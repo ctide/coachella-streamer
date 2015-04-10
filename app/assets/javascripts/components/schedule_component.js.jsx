@@ -1,8 +1,8 @@
 var ScheduleComponent = React.createBackboneClass({
-  var lineItems = this.getCollection().map(function(lineItem) {
-    return <LineupItemComponent model={ lineItem }/>
-  });
   render: function() {
+    var lineItems = this.getCollection().map(function(lineItem) {
+      return <LineupItemComponent model={ lineItem }/>
+    });
     return (
       <table className='schedule'>
         { lineItems }
@@ -13,17 +13,19 @@ var ScheduleComponent = React.createBackboneClass({
 
 var LineupItemComponent = React.createBackboneClass({
   getInitialState: function() {
-    { val: false }
+    return { val: !!App.Data.liveChannels.findWhere({id: this.getModel().get('id')}) }
   },
   toggleState: function() {
     this.setState({val: !this.state.val});
+    this.getModel().toggleState();
   },
   render: function() {
+    console.log(this.state.val);
     return (
       <tr className='line-item'>
-        <td className='checkbox'><input type='checkbox' onChange={this.toggleState} value={this.state.val}></input></td>
+        <td className='checkbox'><input type='checkbox' onChange={this.toggleState} checked={this.state.val}></input></td>
         <td className='time'>{ this.getModel().get('time').format('h:mm a') }</td>
-        <td className='artist'>{ this.getModel().get('name') }</td>
+        <td className='artist'>{ this.getModel().artist.get('name') }</td>
       </tr>
     )
   }

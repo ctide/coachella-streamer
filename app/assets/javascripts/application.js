@@ -14,6 +14,7 @@
 //= require underscore
 //= require backbone
 //= require react
+//= require moment
 //= require jquery_ujs
 //= require turbolinks
 //= require react.backbone
