@@ -20,7 +20,6 @@ var LineupItemComponent = React.createBackboneClass({
     this.getModel().toggleState();
   },
   render: function() {
-    console.log(this.state.val);
     return (
       <tr className='line-item'>
         <td className='checkbox'><input type='checkbox' onChange={this.toggleState} checked={this.state.val}></input></td>
