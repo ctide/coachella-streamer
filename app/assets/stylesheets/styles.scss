@@ -33,6 +33,12 @@ body {
   text-shadow: 0 1px 3px rgba(0,0,0,.5);
 }
 
+p {
+  &:first-child {
+    margin-top: 30px;
+  }
+  text-align: left;
+}
 /* Extra markup and styles for table-esque vertical and horizontal centering */
 .site-wrapper {
   display: table;
@@ -65,6 +71,18 @@ body {
   font-weight: bold;
 }
 
+td.select {
+  width: 30px;
+  min-width: 30px;
+}
+td.time {
+  width: 100px;
+  min-width: 100px;
+}
+td.channel {
+  width: 110px;
+  min-width: 110px;
+}
 
 /*
  * Affix and center
@@ -81,9 +99,6 @@ body {
     bottom: 0;
   }
   /* Start the vertical centering */
-  .site-wrapper-inner {
-    vertical-align: middle;
-  }
   /* Handle the widths */
   .masthead,
   .mastfoot,
