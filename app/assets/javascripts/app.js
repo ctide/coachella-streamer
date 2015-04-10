@@ -1,24 +1,18 @@
 (function() {
   var setupViews = function() {
     var ScheduleView = React.createFactory(ScheduleComponent);
-    var scheduleView = ScheduleView({collection: App.Data.friday});
+    var scheduleView = ScheduleView({collection: App.Data.lineupItems});
     React.render(scheduleView, $('.contents')[0]);
   }
 
   var setupSchedule = function() {
-    if (localStorage['liveChannels']) {
-      App.Data.liveChannels = new App.Collections.LineupItems(JSON.parse(localStorage['liveChannels']));
-    } else {
-      App.Data.liveChannels = new App.Collections.LineupItems();
-    }
-
     App.Data.channels = new App.Collections.Channels([
       {id: 1, name: 'Channel 1', videoId: '0-g994f5tS8'},
       {id: 2, name: 'Channel 2', videoId: 'D7ImOXSKFpE'},
       {id: 3, name: 'Channel 3', videoId: 'HC5sCm6Mg40'}
     ])
 
-    App.Data.friday = new App.Collections.LineupItems([
+    App.Data.lineupItems = new App.Collections.LineupItems([
       {id: 1, time: moment('2015-04-10 15:35 -0700', 'YYY-MM-DD HH:mm Z'), artist: {name: 'Haerts'}, channel: App.Data.channels.one()},
       {id: 2, time: moment('2015-04-10 15:35 -0700', 'YYY-MM-DD HH:mm Z'), artist: {name: 'Eagulls'}, channel: App.Data.channels.two()},
       {id: 3, time: moment('2015-04-10 15:35 -0700', 'YYY-MM-DD HH:mm Z'), artist: {name: 'Cloud Nothings'}, channel: App.Data.channels.three()},
@@ -48,6 +42,18 @@
       {id: 27, time: moment('2015-04-11 00:05 -0700', 'YYY-MM-DD HH:mm Z'), artist: {name: 'Todd Terje and the Olsens'}, channel: App.Data.channels.two()},
       {id: 28, time: moment('2015-04-10 23:35 -0700', 'YYY-MM-DD HH:mm Z'), artist: {name: 'Alesso'}, channel: App.Data.channels.three()},
     ], {parse: true});
+
+    if (localStorage['liveChannels']) {
+      App.Data.liveChannels = new App.Collections.LineupItems(JSON.parse(localStorage['liveChannels']));
+    } else {
+      var params = getSearchParameters();
+      if (params && params.ids) {
+        var ids = params.ids.split(',');
+        App.Data.liveChannels = new App.Collections.LineupItems(App.Data.lineupItems.filter(function(lineitem) { return _.contains(ids, '' + lineitem.get('id')) }));
+      } else {
+        App.Data.liveChannels = new App.Collections.LineupItems();
+      }
+    }
   }
 
   window.App = {
@@ -67,10 +73,12 @@
         if (App.Data.nextTimeout) {
           clearTimeout(App.Data.nextTimeout);
         }
+        var urlParam = '?ids=' + App.Data.liveChannels.map(function(li) { return li.get('id'); }).join(',')
+        window.history.pushState(null, "Coachella Streamer", urlParam);
         App.updatePlayer();
       });
     },
-    Data: {},
+    Data: {videoId: '0-g994f5tS8'},
     Models: {},
     Collections: {},
     updatePlayer: function() {
@@ -100,6 +108,21 @@
 
   var Router = Backbone.Router.extend({});
 })();
+
+function getSearchParameters() {
+ var prmstr = window.location.search.substr(1);
+ return prmstr != null && prmstr != "" ? transformToAssocArray(prmstr) : {};
+}
+
+function transformToAssocArray( prmstr ) {
+ var params = {};
+ var prmarr = prmstr.split("&");
+ for ( var i = 0; i < prmarr.length; i++) {
+   var tmparr = prmarr[i].split("=");
+   params[tmparr[0]] = tmparr[1];
+ }
+ return params;
+}
 
 $(function() { window.App.init(); });
 
