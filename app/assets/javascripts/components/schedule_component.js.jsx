@@ -8,17 +8,23 @@ var ScheduleComponent = React.createBackboneClass({
   filter: function(lineItem) {
     var time = lineItem.get('time');
     if (this.state.active == 'friday') {
-      if (time <= moment('2015-04-10 15:35 -0700', 'YYY-MM-DD HH:mm Z') && time <= moment('2015-04-10 23:35 -0700', 'YYY-MM-DD HH:mm Z')) {
+      if (time >= moment('2015-04-10 15:35 -0700', 'YYYY-MM-DD HH:mm Z') && time <= moment('2015-04-10 23:35 -0700', 'YYYY-MM-DD HH:mm Z')) {
         return true;
       }
     } else if (this.state.active == 'saturday') {
+      if (time >= moment('2015-04-11 15:35 -0700', 'YYYY-MM-DD HH:mm Z') && time <= moment('2015-04-12 00:25 -0700', 'YYYY-MM-DD HH:mm Z')) {
+        return true;
+      }
     } else if (this.state.active == 'sunday') {
+      if (time >= moment('2015-04-12 15:35 -0700', 'YYYY-MM-DD HH:mm Z') && time <= moment('2015-04-12 23:30 -0700', 'YYYY-MM-DD HH:mm Z')) {
+        return true;
+      }
     }
     return false;
   },
   render: function() {
     var lineItems = this.getCollection().filter(this.filter).map(function(lineItem) {
-      return <LineupItemComponent model={ lineItem }/>
+      return <LineupItemComponent model={ lineItem } key={ lineItem.get('id') }/>
     });
     return (
       <div>
@@ -28,7 +34,9 @@ var ScheduleComponent = React.createBackboneClass({
           <li className={ this.state.active == 'sunday' ? 'active' : ''}><a onClick={ this.activate.bind(this, 'sunday') }>Sunday</a></li>
         </ul>
         <table className='table schedule'>
-          { lineItems }
+          <tbody>
+            { lineItems }
+          </tbody>
         </table>
       </div>
     )
@@ -49,6 +57,7 @@ var LineupItemComponent = React.createBackboneClass({
         <td><input type='checkbox' onChange={this.toggleState} checked={this.state.val}></input></td>
         <td className='time'>{ this.getModel().get('time').format('h:mm a') }</td>
         <td className='artist'>{ this.getModel().artist.get('name') }</td>
+        <td className='channel'>{ this.getModel().get('channel').get('name') }</td>
       </tr>
     )
   }
