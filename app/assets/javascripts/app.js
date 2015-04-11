@@ -49,6 +49,8 @@
       {id: 3, name: 'Channel 3', videoId: 'HC5sCm6Mg40'}
     ])
 
+    App.Data.currentChannel = App.Data.channels.first();
+
     App.Data.lineupItems = new App.Collections.LineupItems([
       {id: 1, time: moment('2015-04-10 15:35 -0700', 'YYYY-MM-DD HH:mm Z'), artist: {name: 'Haerts'}, channel: App.Data.channels.one()},
       {id: 2, time: moment('2015-04-10 15:35 -0700', 'YYYY-MM-DD HH:mm Z'), artist: {name: 'Eagulls'}, channel: App.Data.channels.two()},
