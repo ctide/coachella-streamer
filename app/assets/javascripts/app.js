@@ -40,6 +40,10 @@
     var ScheduleView = React.createFactory(ScheduleComponent);
     var scheduleView = ScheduleView({collection: App.Data.lineupItems});
     React.render(scheduleView, $('.contents')[0]);
+
+    var ChannelSwitcherView = React.createFactory(ChannelSwitcherComponent);
+    var channelSwitcherView = ChannelSwitcherView();
+    React.render(channelSwitcherView, $('#channel-switcher')[0]);
   }
 
   var setupSchedule = function() {
@@ -177,6 +181,9 @@
       App.Dispatcher.on('disableChannel', function(lineupItem) {
         App.Data.liveChannels.remove(App.Data.liveChannels.findWhere({id: lineupItem.get('id')}));
       });
+      App.Dispatcher.on('changeChannel', function(newChan) {
+        App.changeChannel(newChan);
+      });
       App.Data.liveChannels.on('add remove', function() {
         localStorage['liveChannels'] = JSON.stringify(App.Data.liveChannels.toJSON());
         if (App.Data.nextTimeout) {
@@ -212,6 +219,14 @@
           stopWoopraPoll();
         }
     },
+    changeChannel: function(newChan) {
+      App.Data.videoId = newChan.get('videoId');
+      App.Data.currentChannel = newChan;
+      if (App.Data.playerReady) {
+        App.Data.player.loadVideoById(App.Data.videoId);
+        App.Dispatcher.trigger('change:music');
+      }
+    },
     updatePlayer: function() {
       var active = App.Data.liveChannels.filter(function(lineupItem) {
         return lineupItem.get('time') <= moment();
@@ -219,18 +234,14 @@
 
       if (active) {
         var videoId = active.get('channel').get('videoId');
-        App.Data.currentChannel = active.get('channel');
         if (App.Data.videoId != videoId) {
-          App.Dispatcher.trigger('change:music');
-          App.Data.videoId = videoId;
-          if (App.Data.playerReady) {
-            App.Data.player.loadVideoById(videoId);
-            if (App.Data.desktopNotifications) {
-              var notification = new Notification('Coachella Stream', {
-                body: 'Switching to ' + active.get('channel').get('name') + ' for ' + active.artist.get('name')
-              });
-            }
+          this.changeChannel(active.get('channel'));
+          if (App.Data.desktopNotifications) {
+            var notification = new Notification('Coachella Stream', {
+              body: 'Switching to ' + active.get('channel').get('name') + ' for ' + active.artist.get('name')
+            });
           }
+
         }
       }
 
