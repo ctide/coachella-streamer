@@ -48,6 +48,12 @@ var ScheduleComponent = React.createBackboneClass({
 });
 
 var LineupItemTableComponent = React.createBackboneClass({
+  componentWillMount: function() {
+    var self = this;
+    App.Dispatcher.on('change:music', function() {
+      self.forceUpdate();
+    });
+  },
   filter: function(lineItem) {
     var time = lineItem.get('time');
     if (this.props.active == 'friday') {
@@ -66,6 +72,8 @@ var LineupItemTableComponent = React.createBackboneClass({
     return false;
   },
   render: function() {
+    if (this.timeout) { clearTimeout(this.timeout); }
+    this.timeout = window.setTimeout(this.forceUpdate, App.Data.lineupItems.nextUpItem().get('time') - moment());
     var lineItems = this.getCollection().filter(this.filter).map(function(lineItem) {
       return <LineupItemComponent model={ lineItem } key={ lineItem.get('id') }/>
     });
@@ -98,14 +106,20 @@ var LineupItemComponent = React.createBackboneClass({
   },
   toggleState: function() {
     this.setState({val: !this.state.val});
-    this.getModel().toggleState();
+    this.getModel().setState(!this.state.val);
   },
   render: function() {
+    var playing = this.getModel() == App.Data.lineupItems.activeItem();
     return (
       <tr className='line-item'>
         <td className='select'><input type='checkbox' onChange={this.toggleState} checked={this.state.val}></input></td>
-        <td className='time'>{ this.getModel().get('time').format('h:mm a') }</td>
-        <td className='artist'>{ this.getModel().artist.get('name') }</td>
+        <td className='time'>
+          { this.getModel().get('time').format('h:mm a') }
+        </td>
+        <td className='artist'>
+          { this.getModel().artist.get('name') }
+          { playing ? <i className="fa fa-music"></i> : '' }
+        </td>
         <td className='channel'>{ this.getModel().get('channel').get('name') }</td>
       </tr>
     )

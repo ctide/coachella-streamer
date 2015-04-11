@@ -127,18 +127,18 @@
       {id: 73, time: moment('2015-04-12 19:55 -0700', 'YYYY-MM-DD HH:mm Z'), artist: {name: 'Kaskade'}, channel: App.Data.channels.one()},
       {id: 74, time: moment('2015-04-12 19:40 -0700', 'YYYY-MM-DD HH:mm Z'), artist: {name: 'The Cribs'}, channel: App.Data.channels.two()},
       {id: 75, time: moment('2015-04-12 19:45 -0700', 'YYYY-MM-DD HH:mm Z'), artist: {name: 'Madeon'}, channel: App.Data.channels.three()},
-      {id: 76, time: moment('2015-04-12 20:45 -0700', 'YYYY-MM-DD HH:mm Z'), artist: {name: 'Florence & the machine'}, channel: App.Data.channels.one()},
+      {id: 76, time: moment('2015-04-12 20:45 -0700', 'YYYY-MM-DD HH:mm Z'), artist: {name: 'Florence & The Machine'}, channel: App.Data.channels.one()},
       {id: 77, time: moment('2015-04-12 20:55 -0700', 'YYYY-MM-DD HH:mm Z'), artist: {name: 'Stromae'}, channel: App.Data.channels.two()},
       {id: 78, time: moment('2015-04-12 20:45 -0700', 'YYYY-MM-DD HH:mm Z'), artist: {name: 'New world punk'}, channel: App.Data.channels.three()},
       {id: 79, time: moment('2015-04-12 21:15 -0700', 'YYYY-MM-DD HH:mm Z'), artist: {name: 'St. Vincent'}, channel: App.Data.channels.two()},
       {id: 80, time: moment('2015-04-12 21:45 -0700', 'YYYY-MM-DD HH:mm Z'), artist: {name: 'David Guetta'}, channel: App.Data.channels.three()},
-      {id: 81, time: moment('2015-04-12 22:10 -0700', 'YYYY-MM-DD HH:mm Z'), artist: {name: 'Fitz & the Tantrums'}, channel: App.Data.channels.two()},
+      {id: 81, time: moment('2015-04-12 22:10 -0700', 'YYYY-MM-DD HH:mm Z'), artist: {name: 'Fitz & The Tantrums'}, channel: App.Data.channels.two()},
       {id: 82, time: moment('2015-04-12 23:00 -0700', 'YYYY-MM-DD HH:mm Z'), artist: {name: 'Kygo (partial set)'}, channel: App.Data.channels.three()},
       {id: 83, time: moment('2015-04-12 23:00 -0700', 'YYYY-MM-DD HH:mm Z'), artist: {name: 'Odesza'}, channel: App.Data.channels.two()},
       {id: 84, time: moment('2015-04-12 23:30 -0700', 'YYYY-MM-DD HH:mm Z'), artist: {name: 'Jamie xx (partial set)'}, channel: App.Data.channels.three()},
-      {id: 85, time: moment('2015-04-12 15:35 -0700', 'YYYY-MM-DD HH:mm Z'), artist: {name: 'circa survive'}, channel: App.Data.channels.one()},
-      {id: 86, time: moment('2015-04-12 15:35 -0700', 'YYYY-MM-DD HH:mm Z'), artist: {name: 'm0'}, channel: App.Data.channels.two()},
-      {id: 87, time: moment('2015-04-12 15:35 -0700', 'YYYY-MM-DD HH:mm Z'), artist: {name: 'The orwells'}, channel: App.Data.channels.three()},
+      {id: 85, time: moment('2015-04-12 15:35 -0700', 'YYYY-MM-DD HH:mm Z'), artist: {name: 'Circa Survive'}, channel: App.Data.channels.one()},
+      {id: 86, time: moment('2015-04-12 15:35 -0700', 'YYYY-MM-DD HH:mm Z'), artist: {name: 'M0'}, channel: App.Data.channels.two()},
+      {id: 87, time: moment('2015-04-12 15:35 -0700', 'YYYY-MM-DD HH:mm Z'), artist: {name: 'The Orwells'}, channel: App.Data.channels.three()},
 
       {id: 88, time: moment('2015-04-10 17:50 -0700', 'YYYY-MM-DD HH:mm Z'), artist: {name: 'Action Bronson'}, channel: App.Data.channels.three()},
 
@@ -214,7 +214,9 @@
 
       if (active) {
         var videoId = active.get('channel').get('videoId');
+        App.Data.currentChannel = active.get('channel');
         if (App.Data.videoId != videoId) {
+          App.Dispatcher.trigger('change:music');
           App.Data.videoId = videoId;
           if (App.Data.playerReady) {
             App.Data.player.loadVideoById(videoId);
