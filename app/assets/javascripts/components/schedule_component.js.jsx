@@ -1,6 +1,12 @@
 var ScheduleComponent = React.createBackboneClass({
   getInitialState: function() {
-    return {active: 'friday', desktopNotifications: App.Data.desktopNotifications}
+    var active = 'sunday';
+    if (moment() <= moment('2015-04-10 23:35 -0700', 'YYYY-MM-DD HH:mm Z')) {
+      active = 'friday';
+    } else if (moment() <= moment('2015-04-12 00:25 -0700', 'YYYY-MM-DD HH:mm Z')) {
+      active = 'saturday';
+    }
+    return {active: active, desktopNotifications: App.Data.desktopNotifications}
   },
   activate: function(newState) {
     this.setState({active: newState})
