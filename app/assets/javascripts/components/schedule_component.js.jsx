@@ -79,7 +79,7 @@ var LineupItemTableComponent = React.createBackboneClass({
   },
   render: function() {
     if (this.timeout) { clearTimeout(this.timeout); }
-    this.timeout = window.setTimeout(this.forceUpdate, App.Data.lineupItems.nextUpItem().get('time') - moment());
+    this.timeout = window.setTimeout(this.forceUpdate, (App.Data.lineupItems.nextUpItem().get('time') - moment() + 10000));
     var lineItems = this.getCollection().filter(this.filter).map(function(lineItem) {
       return <LineupItemComponent model={ lineItem } key={ lineItem.get('id') }/>
     });
