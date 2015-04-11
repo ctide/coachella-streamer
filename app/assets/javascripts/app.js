@@ -235,7 +235,7 @@
       if (active) {
         var videoId = active.get('channel').get('videoId');
         if (App.Data.videoId != videoId) {
-          this.changeChannel(active.get('channel'));
+          App.changeChannel(active.get('channel'));
           if (App.Data.desktopNotifications) {
             var notification = new Notification('Coachella Stream', {
               body: 'Switching to ' + active.get('channel').get('name') + ' for ' + active.artist.get('name')
