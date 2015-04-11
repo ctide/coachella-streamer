@@ -143,6 +143,9 @@
       {id: 87, time: moment('2015-04-12 15:35 -0700', 'YYYY-MM-DD HH:mm Z'), artist: {name: 'The Orwells'}, channel: App.Data.channels.three()},
 
       {id: 88, time: moment('2015-04-10 17:50 -0700', 'YYYY-MM-DD HH:mm Z'), artist: {name: 'Action Bronson'}, channel: App.Data.channels.three()},
+      {id: 89, time: moment('2015-04-11 00:00 -0700', 'YYYY-MM-DD HH:mm Z'), artist: {name: 'Azealia Banks (encore)'}, channel: App.Data.channels.three()},
+      {id: 90, time: moment('2015-04-10 23:00 -0700', 'YYYY-MM-DD HH:mm Z'), artist: {name: 'Alabama Shakes (encore)'}, channel: App.Data.channels.three()},
+      {id: 91, time: moment('2015-04-10 22:05 -0700', 'YYYY-MM-DD HH:mm Z'), artist: {name: 'The War on Drugs (encore)'}, channel: App.Data.channels.three()},
 
      ], {parse: true});
 
