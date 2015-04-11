@@ -18,6 +18,7 @@
     }
 
     function onPlayerStateChange(event) {
+      App.handlePlayerStateChange(event);
     }
   }
   var setupViews = function() {
@@ -169,6 +170,21 @@
     Data: {videoId: '0-g994f5tS8', playerReady: false},
     Models: {},
     Collections: {},
+    handlePlayerStateChange: function(event) {
+        var actionMap = [
+            'ended',
+            'playing',
+            'paused',
+            'buffering',
+            'video cued'
+        ];
+
+        if (event.data === YT.PlayerState.PLAYING) {
+            woopra.track('Playing Video', event.target.getVideoData());
+        }
+
+        console.dir(event);
+    },
     updatePlayer: function() {
       var active = App.Data.liveChannels.filter(function(lineupItem) {
         return lineupItem.get('time') <= moment();
