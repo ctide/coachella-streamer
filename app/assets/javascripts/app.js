@@ -250,7 +250,7 @@
       }).shift();
 
       if (nextUp) {
-        var timeDiff = nextUp.get('time') - new moment();
+        var timeDiff = (nextUp.get('time') - new moment() + 5000);
         App.Data.nextTimeout = setTimeout(App.updatePlayer, timeDiff);
       }
     },
