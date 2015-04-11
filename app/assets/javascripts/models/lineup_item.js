@@ -4,11 +4,11 @@ App.Models.LineupItem = Backbone.Model.extend({
     return _.omit(data, 'artist');
   },
   toggleState: function() {
-    this.set('enabled', !this.get('enabled'));
     if (this.get('enabled')) {
-      App.Dispatcher.trigger('enableChannel', this);
-    } else {
       App.Dispatcher.trigger('disableChannel', this);
+    } else {
+      App.Dispatcher.trigger('enableChannel', this);
     }
+    this.set('enabled', !this.get('enabled'));
   }
 });

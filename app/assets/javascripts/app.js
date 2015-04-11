@@ -170,7 +170,7 @@
         App.Data.liveChannels.add(lineupItem);
       });
       App.Dispatcher.on('disableChannel', function(lineupItem) {
-        App.Data.liveChannels.remove(lineupItem);
+        App.Data.liveChannels.remove(App.Data.liveChannels.findWhere({id: lineupItem.get('id')}));
       });
       App.Data.liveChannels.on('add remove', function() {
         localStorage['liveChannels'] = JSON.stringify(App.Data.liveChannels.toJSON());
