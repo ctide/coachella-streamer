@@ -124,6 +124,8 @@
       {id: 86, time: moment('2015-04-12 15:35 -0700', 'YYYY-MM-DD HH:mm Z'), artist: {name: 'm0'}, channel: App.Data.channels.two()},
       {id: 87, time: moment('2015-04-12 15:35 -0700', 'YYYY-MM-DD HH:mm Z'), artist: {name: 'The orwells'}, channel: App.Data.channels.three()},
 
+      {id: 88, time: moment('2015-04-10 17:50 -0700', 'YYYY-MM-DD HH:mm Z'), artist: {name: 'Action Bronson'}, channel: App.Data.channels.three()},
+
      ], {parse: true});
 
     var params = getSearchParameters();
