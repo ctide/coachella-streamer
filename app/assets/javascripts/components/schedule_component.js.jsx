@@ -1,7 +1,7 @@
 var ScheduleComponent = React.createBackboneClass({
   getInitialState: function() {
     var active = 'sunday';
-    if (moment() <= moment('2015-04-10 23:35 -0700', 'YYYY-MM-DD HH:mm Z')) {
+    if (moment() <= moment('2015-04-11 00:05 -0700', 'YYYY-MM-DD HH:mm Z')) {
       active = 'friday';
     } else if (moment() <= moment('2015-04-12 00:25 -0700', 'YYYY-MM-DD HH:mm Z')) {
       active = 'saturday';
