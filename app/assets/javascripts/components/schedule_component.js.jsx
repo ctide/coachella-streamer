@@ -1,13 +1,40 @@
 var ScheduleComponent = React.createBackboneClass({
   getInitialState: function() {
-    return {active: 'friday'}
+    return {active: 'friday', desktopNotifications: App.Data.desktopNotifications}
   },
   activate: function(newState) {
     this.setState({active: newState})
   },
+  enableNotifications: function() {
+    this.setState({desktopNotifications: true});
+    App.Data.desktopNotifications = true;
+    localStorage['desktopNotifications'] = true;
+  },
+  toggleNotifications: function(e) {
+    var self = this;
+    if (this.state.desktopNotifications) {
+      this.setState({desktopNotifications: false});
+      App.Data.desktopNotifications = false;
+      localStorage['desktopNotifications'] = false;
+    } else {
+      if (Notification.permission !== 'granted') {
+        Notification.requestPermission(function() {
+          self.enableNotifications();
+        });
+      } else {
+        self.enableNotifications();
+      }
+    }
+  },
   render: function() {
     return (
       <div>
+        <div className='checkbox enable-desktop-notifications'>
+          <label>
+            <input type='checkbox' checked={ this.state.desktopNotifications } onChange={ this.toggleNotifications } id='notifications'/>
+            Enable desktop notifications when the channel is changed
+          </label>
+        </div>
         <ul className='nav nav-tabs'>
           <li className={ this.state.active == 'friday' ? 'active' : ''}><a onClick={ this.activate.bind(this, 'friday') }>Friday</a></li>
           <li className={ this.state.active == 'saturday' ? 'active' : ''}><a onClick={ this.activate.bind(this, 'saturday') }>Saturday</a></li>

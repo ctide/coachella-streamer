@@ -142,6 +142,7 @@
 
   window.App = {
     init: function() {
+      App.Data.desktopNotifications = !!localStorage['desktopNotifications']
       App.Router = new Router();
       setupSchedule();
       setupViews();
@@ -177,6 +178,11 @@
           App.Data.videoId = videoId;
           if (App.Data.playerReady) {
             App.Data.player.loadVideoById(videoId);
+            if (App.Data.desktopNotifications) {
+              var notification = new Notification('Coachella Stream', {
+                body: 'Switching to ' + active.get('channel').get('name') + ' for ' + active.artist.get('name')
+              });
+            }
           }
         }
       }
