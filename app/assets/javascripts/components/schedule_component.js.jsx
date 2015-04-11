@@ -98,8 +98,9 @@ var ExplanationComponent = React.createClass({
     return (
       <div>
         <p>There's lots of acts at Coachella I want to listen to this year that are all playing on different channels.  Since I'm way too lazy to remember to switch between them, I hacked this together
-        so that I could just select all the acts I care about, and it will switch between them for me so I can just leave it on in the background.  Right now it's only setup for weekend 1, but I'll
-        update it before next weekend so that you can use the same URL to listen then also.</p>
+        so that I could just select all the acts I care about, and it will switch between them for me so I can just leave it on in the background. If they
+        decide to livestream both weekends, this should work just fine for next weekend also.</p>
+        <p>If you missed any sets, you can find videos of previous sets <a href="https://vid.me/coachella2015">here</a>.</p>
         <p>Comments? You can reach me on twitter: <a href='https://www.twitter.com/ctide'>@ctide</a> or via email at: chris at fifteenb.com</p>
       </div>
     )
