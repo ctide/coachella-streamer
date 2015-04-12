@@ -101,6 +101,7 @@ var ExplanationComponent = React.createClass({
         so that I could just select all the acts I care about, and it will switch between them for me so I can just leave it on in the background. If they
         decide to livestream both weekends, this should work just fine for next weekend also.</p>
         <p>If you missed any sets, you can find videos of previous sets <a href="https://vid.me/coachella2015">here</a>.</p>
+        <p>The source code for this app is on github here: <a href='https://github.com/ctide/coachella-streamer'>https://github.com/ctide/coachella-streamer</a></p>
         <p>Comments? You can reach me on twitter: <a href='https://www.twitter.com/ctide'>@ctide</a> or via email at: chris at fifteenb.com</p>
       </div>
     )
