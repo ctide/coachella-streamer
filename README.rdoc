@@ -1,3 +1,5 @@
+https://coachella-streamer.herokuapp.com/
+
 This is a really simple app that I built to switch channels automatically for me for the Coachella stream.
 
 The code is hideous as fuck because I didn't realize until 2 hours before the livestream started that it was on 3 channels,
