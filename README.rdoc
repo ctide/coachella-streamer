@@ -1,28 +1,11 @@
-== README
+This is a really simple app that I built to switch channels automatically for me for the Coachella stream.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The code is hideous as fuck because I didn't realize until 2 hours before the livestream started that it was on 3 channels,
+and that I'd need to be switching between them constantly to see everything I wanted to see.
 
-Things you may want to cover:
+It certainly doesn't need Rails, but that let me avoid fucking around with all the preprocessing
+involved with React, Sass, etc. Backbone is also totally unnecessary, but I wasn't sure initially if I was going
+to store the lineup data in a backend or not, so I started with Backbone and then just left it there
+when I ended up hardcoding everything.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Hopefully someone can still derive some value from this mess!
