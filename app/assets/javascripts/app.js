@@ -135,7 +135,7 @@
       {id: 75, time: moment('2015-04-12 19:45 -0700', 'YYYY-MM-DD HH:mm Z'), artist: {name: 'Madeon'}, channel: App.Data.channels.three()},
       {id: 76, time: moment('2015-04-12 20:45 -0700', 'YYYY-MM-DD HH:mm Z'), artist: {name: 'Florence & The Machine'}, channel: App.Data.channels.one()},
       {id: 77, time: moment('2015-04-12 20:55 -0700', 'YYYY-MM-DD HH:mm Z'), artist: {name: 'Stromae'}, channel: App.Data.channels.two()},
-      {id: 78, time: moment('2015-04-12 20:45 -0700', 'YYYY-MM-DD HH:mm Z'), artist: {name: 'New world punk'}, channel: App.Data.channels.three()},
+      {id: 78, time: moment('2015-04-12 20:45 -0700', 'YYYY-MM-DD HH:mm Z'), artist: {name: 'New World Punk'}, channel: App.Data.channels.three()},
       {id: 79, time: moment('2015-04-12 21:15 -0700', 'YYYY-MM-DD HH:mm Z'), artist: {name: 'St. Vincent'}, channel: App.Data.channels.two()},
       {id: 80, time: moment('2015-04-12 21:45 -0700', 'YYYY-MM-DD HH:mm Z'), artist: {name: 'David Guetta'}, channel: App.Data.channels.three()},
       {id: 81, time: moment('2015-04-12 22:10 -0700', 'YYYY-MM-DD HH:mm Z'), artist: {name: 'Fitz & The Tantrums'}, channel: App.Data.channels.two()},
@@ -150,6 +150,9 @@
       {id: 89, time: moment('2015-04-11 00:00 -0700', 'YYYY-MM-DD HH:mm Z'), artist: {name: 'Azealia Banks (encore)'}, channel: App.Data.channels.one()},
       {id: 90, time: moment('2015-04-10 23:00 -0700', 'YYYY-MM-DD HH:mm Z'), artist: {name: 'Alabama Shakes (encore)'}, channel: App.Data.channels.one()},
       {id: 91, time: moment('2015-04-10 22:05 -0700', 'YYYY-MM-DD HH:mm Z'), artist: {name: 'The War on Drugs (encore)'}, channel: App.Data.channels.one()},
+
+      {id: 92, time: moment('2015-04-12 21:45 -0700', 'YYYY-MM-DD HH:mm Z'), artist: {name: 'Gaslamp Killer Experience'}, channel: App.Data.channels.one()},
+      {id: 93, time: moment('2015-04-12 22:15 -0700', 'YYYY-MM-DD HH:mm Z'), artist: {name: 'Drake'}, channel: App.Data.channels.one()},
 
      ], {parse: true});
 
