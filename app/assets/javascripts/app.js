@@ -48,9 +48,9 @@
 
   var setupSchedule = function() {
     App.Data.channels = new App.Collections.Channels([
-      {id: 1, name: 'Channel 1', videoId: '0-g994f5tS8'},
-      {id: 2, name: 'Channel 2', videoId: 'D7ImOXSKFpE'},
-      {id: 3, name: 'Channel 3', videoId: 'HC5sCm6Mg40'}
+      {id: 1, name: 'Channel 1', videoId: 'SjOLOfyn95U'},
+      {id: 2, name: 'Channel 2', videoId: 'PvHy7jNCfs0'},
+      {id: 3, name: 'Channel 3', videoId: 'xhMmH0AFwLc'}
     ])
 
     App.Data.currentChannel = App.Data.channels.first();
